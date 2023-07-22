@@ -19,7 +19,7 @@ class Name(Field):
     @Field.value.setter
     def value(self, value):
         if value.isalpha():
-            self.__value = value.capitalize()
+            self._Field__value = value
         else:
             raise Exception('The name must consist of only letters')
 
@@ -28,7 +28,7 @@ class Phone(Field):
     def value(self, value):
         checking = re.findall(r'[0]{1}\d{9}',value)
         if checking and len(value) == 10:
-            self.__value = value
+            self._Field__value = value
         else:
             raise Exception('The length of the phone is not 10 or the phone does not consist of numbers. As it should be: 0661117733')
 
@@ -37,7 +37,7 @@ class Birthday(Field):
     def value(self, value):
         checking = re.findall(r'\d{2}[.]\d{2}[.]\d{4}',value)
         if checking and len(value) == 10:
-            self.__value = value
+            self._Field__value = value
         else:
             raise Exception('The date should be written in full and with periods, for example: "09.08.1999"')
 
