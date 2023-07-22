@@ -37,11 +37,11 @@ def change_phone(args):
     name = Name(args[0])
     phone = Phone(args[1])
     phones = list(map(lambda x: x.value, contact_book[name.value]))
-    old_phone = Phone(phones)
+    old_phone = Phone(phones[0])
     rec = Record(name, old_phone)
     rec.change_phone(old_phone, phone)
     contact_book.add_record(rec)
-    return f'{name.value} now has a phone: {phone.value}\nOld number: {old_phone.value}'
+    return f'{name.value} now has a phone: {phone.value}\nOld number: {phones}'
 
 def show_all(args):
     if len(contact_book)>0:
@@ -56,8 +56,7 @@ def show_all(args):
 def show_phone(args):
     name = Name(args[0])
     phones = list(map(lambda x: x.value, contact_book[name.value]))
-    phone = Phone(phones)
-    return f'Phone: {phone.value}'
+    return f'Phone: {phones}'
 
 HANDLERS = {
     'hello': hello_user,
